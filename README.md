@@ -1,2 +1,2 @@
 # EasyAnim
-A simple 2D animation creation tool
+A simple 2D animation video creation tool
