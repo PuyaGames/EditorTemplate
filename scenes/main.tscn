@@ -1,0 +1,30 @@
+[gd_scene load_steps=4 format=3 uid="uid://bkxp8uxxf427r"]
+
+[ext_resource type="PackedScene" uid="uid://b0108yjma0c4e" path="res://scenes/ui/top_menu.tscn" id="1_6ir1o"]
+[ext_resource type="Theme" uid="uid://cngbvfpwjoimv" path="res://resources/theme.tres" id="1_dv7cp"]
+[ext_resource type="PackedScene" uid="uid://b6nq24uqnwehl" path="res://scenes/ui/main_ui.tscn" id="2_2l1nd"]
+
+[node name="Main" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("1_dv7cp")
+
+[node name="MenuAndUI" type="VBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 0
+
+[node name="TopMenu" parent="MenuAndUI" instance=ExtResource("1_6ir1o")]
+layout_mode = 2
+
+[node name="MainUI" parent="MenuAndUI" instance=ExtResource("2_2l1nd")]
+layout_mode = 2
+size_flags_vertical = 3
