@@ -1,11 +1,46 @@
-[gd_scene load_steps=2 format=3 uid="uid://b0c6lcu3g71cl"]
+[gd_scene load_steps=6 format=3 uid="uid://b0c6lcu3g71cl"]
 
 [ext_resource type="StyleBox" uid="uid://b3v8bi2e21gdl" path="res://resources/main_ui_panel.tres" id="1_qarlh"]
+[ext_resource type="Shader" path="res://shaders/transparent_checker.gdshader" id="2_3d57h"]
+[ext_resource type="Script" path="res://scenes/ui/viewport.gd" id="2_s6le3"]
+[ext_resource type="PackedScene" uid="uid://yfftwkd0iqet" path="res://scenes/ui/canvas.tscn" id="3_uae7h"]
 
-[node name="Viewport" type="Panel"]
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_sigmj"]
+shader = ExtResource("2_3d57h")
+shader_parameter/size = 10.0
+shader_parameter/alpha = 1.0
+shader_parameter/color1 = Color(0.372549, 0.372549, 0.372549, 1)
+shader_parameter/color2 = Color(0.482353, 0.482353, 0.482353, 1)
+shader_parameter/offset = Vector2(0, 0)
+shader_parameter/scale = Vector2(0, 0)
+shader_parameter/rect_size = Vector2(0, 0)
+shader_parameter/follow_movement = false
+shader_parameter/follow_scale = false
+
+[node name="Viewport" type="PanelContainer"]
+clip_contents = true
+offset_right = 2.0
+offset_bottom = 2.0
 theme_override_styles/panel = ExtResource("1_qarlh")
+script = ExtResource("2_s6le3")
+
+[node name="TransparentChecker" type="ColorRect" parent="."]
+material = SubResource("ShaderMaterial_sigmj")
+layout_mode = 2
+
+[node name="SubViewportContainer" type="SubViewportContainer" parent="."]
+layout_mode = 2
+size_flags_horizontal = 3
+stretch = true
+
+[node name="SubViewport" type="SubViewport" parent="SubViewportContainer"]
+transparent_bg = true
+handle_input_locally = false
+size = Vector2i(2, 2)
+render_target_update_mode = 4
+
+[node name="Canvas" parent="SubViewportContainer/SubViewport" instance=ExtResource("3_uae7h")]
+
+[node name="Camera2D" type="Camera2D" parent="SubViewportContainer/SubViewport"]
+
+[connection signal="gui_input" from="." to="." method="_on_gui_input"]
