@@ -1,0 +1,11 @@
+[gd_scene load_steps=2 format=3 uid="uid://b0c6lcu3g71cl"]
+
+[ext_resource type="StyleBox" uid="uid://b3v8bi2e21gdl" path="res://resources/main_ui_panel.tres" id="1_qarlh"]
+
+[node name="Viewport" type="Panel"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = ExtResource("1_qarlh")

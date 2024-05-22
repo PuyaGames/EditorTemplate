@@ -1,36 +1,69 @@
-[gd_scene load_steps=8 format=3 uid="uid://b6nq24uqnwehl"]
+[gd_scene load_steps=17 format=3 uid="uid://b6nq24uqnwehl"]
 
-[ext_resource type="Shader" path="res://shaders/transparent_checker.gdshader" id="1_1gg07"]
 [ext_resource type="Script" path="res://addons/dockable_container/dockable_container.gd" id="1_uycy8"]
 [ext_resource type="Script" path="res://addons/dockable_container/layout_panel.gd" id="2_exon4"]
 [ext_resource type="Script" path="res://addons/dockable_container/layout.gd" id="3_vnlug"]
+[ext_resource type="Script" path="res://addons/dockable_container/layout_split.gd" id="4_28mi4"]
+[ext_resource type="PackedScene" uid="uid://b65duftlksb5k" path="res://scenes/ui/outliner.tscn" id="4_g5dfg"]
+[ext_resource type="PackedScene" uid="uid://b0c6lcu3g71cl" path="res://scenes/ui/viewport.tscn" id="5_bb0wl"]
+[ext_resource type="PackedScene" uid="uid://1elhy32bhod3" path="res://scenes/ui/Inspector.tscn" id="6_od6ft"]
+[ext_resource type="PackedScene" uid="uid://bgw7rjgcxloff" path="res://scenes/ui/action.tscn" id="7_ti2rb"]
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_y6hja"]
-shader = ExtResource("1_1gg07")
-shader_parameter/size = 10.0
-shader_parameter/alpha = 1.0
-shader_parameter/color1 = Color(0.7, 0.7, 0.7, 1)
-shader_parameter/color2 = Color(1, 1, 1, 1)
-shader_parameter/offset = Vector2(0, 0)
-shader_parameter/scale = Vector2(0, 0)
-shader_parameter/rect_size = Vector2(0, 0)
-shader_parameter/follow_movement = false
-shader_parameter/follow_scale = false
-
-[sub_resource type="Resource" id="Resource_weexn"]
+[sub_resource type="Resource" id="Resource_0uggv"]
 resource_name = "Tabs"
 script = ExtResource("2_exon4")
-names = PackedStringArray()
-current_tab = -1
+names = PackedStringArray("Outliner")
+current_tab = 0
 
-[sub_resource type="Resource" id="Resource_gobtq"]
+[sub_resource type="Resource" id="Resource_ldux2"]
+resource_name = "Tabs"
+script = ExtResource("2_exon4")
+names = PackedStringArray("Viewport")
+current_tab = 0
+
+[sub_resource type="Resource" id="Resource_8mufb"]
+resource_name = "Tabs"
+script = ExtResource("2_exon4")
+names = PackedStringArray("Action")
+current_tab = 0
+
+[sub_resource type="Resource" id="Resource_n3wqj"]
+resource_name = "Split"
+script = ExtResource("4_28mi4")
+direction = 1
+percent = 0.5
+first = SubResource("Resource_ldux2")
+second = SubResource("Resource_8mufb")
+
+[sub_resource type="Resource" id="Resource_f3jf4"]
+resource_name = "Tabs"
+script = ExtResource("2_exon4")
+names = PackedStringArray("Inspector")
+current_tab = 0
+
+[sub_resource type="Resource" id="Resource_e6rqm"]
+resource_name = "Split"
+script = ExtResource("4_28mi4")
+direction = 0
+percent = 0.5
+first = SubResource("Resource_n3wqj")
+second = SubResource("Resource_f3jf4")
+
+[sub_resource type="Resource" id="Resource_aex0o"]
+resource_name = "Split"
+script = ExtResource("4_28mi4")
+direction = 0
+percent = 0.243373
+first = SubResource("Resource_0uggv")
+second = SubResource("Resource_e6rqm")
+
+[sub_resource type="Resource" id="Resource_g6ayx"]
 resource_name = "Layout"
 script = ExtResource("3_vnlug")
-root = SubResource("Resource_weexn")
+root = SubResource("Resource_aex0o")
 hidden_tabs = {}
 
 [node name="MainUI" type="Panel"]
-material = SubResource("ShaderMaterial_y6hja")
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -38,8 +71,26 @@ grow_horizontal = 2
 grow_vertical = 2
 
 [node name="DockableContainer" type="Container" parent="."]
-layout_mode = 0
-offset_right = 40.0
-offset_bottom = 40.0
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
 script = ExtResource("1_uycy8")
-layout = SubResource("Resource_gobtq")
+tab_alignment = 0
+tabs_visible = false
+layout = SubResource("Resource_g6ayx")
+clone_layout_on_ready = false
+
+[node name="Outliner" parent="DockableContainer" instance=ExtResource("4_g5dfg")]
+layout_mode = 2
+
+[node name="Viewport" parent="DockableContainer" instance=ExtResource("5_bb0wl")]
+layout_mode = 2
+
+[node name="Action" parent="DockableContainer" instance=ExtResource("7_ti2rb")]
+layout_mode = 2
+
+[node name="Inspector" parent="DockableContainer" instance=ExtResource("6_od6ft")]
+layout_mode = 2
