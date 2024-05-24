@@ -6,7 +6,7 @@
 [ext_resource type="Script" path="res://addons/dockable_container/layout_split.gd" id="4_28mi4"]
 [ext_resource type="PackedScene" uid="uid://b65duftlksb5k" path="res://scenes/ui/outliner.tscn" id="4_g5dfg"]
 [ext_resource type="PackedScene" uid="uid://b0c6lcu3g71cl" path="res://scenes/ui/viewport.tscn" id="5_bb0wl"]
-[ext_resource type="PackedScene" uid="uid://1elhy32bhod3" path="res://scenes/ui/inspector.tscn" id="6_od6ft"]
+[ext_resource type="PackedScene" uid="uid://1elhy32bhod3" path="res://scenes/ui/anspector.tscn" id="6_od6ft"]
 [ext_resource type="PackedScene" uid="uid://cxp5ye02kvity" path="res://scenes/ui/content_browser.tscn" id="9_ixwb8"]
 
 [sub_resource type="Resource" id="Resource_0uggv"]
