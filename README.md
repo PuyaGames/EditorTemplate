@@ -1,2 +1,5 @@
-# EasyAnim
-A simple 2D animation video creation tool made with Godot Engine
+# EditorTemplate
+A editor app template made with Godot Engine
+
+## Screenshot
+![main_ui.png](./screenshots/main_ui.png)

@@ -6,8 +6,8 @@
 [ext_resource type="Script" path="res://addons/dockable_container/layout_split.gd" id="4_28mi4"]
 [ext_resource type="PackedScene" uid="uid://b65duftlksb5k" path="res://scenes/ui/outliner.tscn" id="4_g5dfg"]
 [ext_resource type="PackedScene" uid="uid://b0c6lcu3g71cl" path="res://scenes/ui/viewport.tscn" id="5_bb0wl"]
-[ext_resource type="PackedScene" uid="uid://1elhy32bhod3" path="res://scenes/ui/Inspector.tscn" id="6_od6ft"]
-[ext_resource type="PackedScene" uid="uid://bgw7rjgcxloff" path="res://scenes/ui/action.tscn" id="7_ti2rb"]
+[ext_resource type="PackedScene" uid="uid://1elhy32bhod3" path="res://scenes/ui/inspector.tscn" id="6_od6ft"]
+[ext_resource type="PackedScene" uid="uid://cxp5ye02kvity" path="res://scenes/ui/content_browser.tscn" id="9_ixwb8"]
 
 [sub_resource type="Resource" id="Resource_0uggv"]
 resource_name = "Tabs"
@@ -24,7 +24,7 @@ current_tab = 0
 [sub_resource type="Resource" id="Resource_8mufb"]
 resource_name = "Tabs"
 script = ExtResource("2_exon4")
-names = PackedStringArray("Action")
+names = PackedStringArray("ContentBrowser")
 current_tab = 0
 
 [sub_resource type="Resource" id="Resource_n3wqj"]
@@ -87,10 +87,11 @@ clone_layout_on_ready = false
 layout_mode = 2
 
 [node name="Viewport" parent="DockableContainer" instance=ExtResource("5_bb0wl")]
-layout_mode = 2
-
-[node name="Action" parent="DockableContainer" instance=ExtResource("7_ti2rb")]
+custom_minimum_size = Vector2(480, 320)
 layout_mode = 2
 
 [node name="Inspector" parent="DockableContainer" instance=ExtResource("6_od6ft")]
+layout_mode = 2
+
+[node name="ContentBrowser" parent="DockableContainer" instance=ExtResource("9_ixwb8")]
 layout_mode = 2
